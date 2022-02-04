@@ -1,2 +1,2 @@
-# sketchbook
-A collection of generative art sketches, written in Rust 🦀.
+# `sketchbook`
+A CLI tool for managing generative art sketches from the `nannou` library.
