@@ -1,15 +1,10 @@
 #![allow(dead_code)]
 
-mod empty;
-pub use empty::main as empty_main;
-
-mod empty_test;
-pub use empty_test::main as empty_test_main;
+pub use crate::templates::blank::main as blank_main;
 
 #[derive(Debug)]
 pub enum Sketch {
-    Empty,
-    EmptyTest,
+    Blank,
 }
 
 pub type SketchEntrypoint = fn() -> ();
@@ -17,8 +12,7 @@ pub type SketchEntrypoint = fn() -> ();
 impl Sketch {
     pub fn to_entrypoint(&self) -> SketchEntrypoint {
         match self {
-            Sketch::Empty => empty_main,
-            Sketch::EmptyTest => empty_test_main,
+            Sketch::Blank => blank_main,
         }
     }
 }
@@ -34,8 +28,7 @@ impl std::str::FromStr for Sketch {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
-            "empty" | "Empty" => Ok(Sketch::Empty),
-            "empty_test" | "EmptyTest" => Ok(Sketch::EmptyTest),
+            "blank" | "Blank" => Ok(Sketch::Blank),
             _ => Err(format!("\"{}\" is not a valid sketch", s)),
         }
     }

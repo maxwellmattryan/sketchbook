@@ -1,6 +1,6 @@
 use nannou::prelude::*;
 
-fn main() {
+pub fn main() {
     nannou::app(model).update(update).simple_window(view).run();
 }
 
@@ -17,5 +17,5 @@ fn update(_app: &App, _model: &mut Model, _update: Update) {}
 
 /// Presents the state of the model (hence no `&mut`) to a window via the `Frame` object.
 fn view(_app: &App, _model: &Model, frame: Frame) {
-    frame.clear(WHITE);
+    frame.clear(ANTIQUEWHITE);
 }
