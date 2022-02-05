@@ -1,6 +1,3 @@
-mod sketches;
-mod templates;
-
 use sketchbook::{
     cli::{Cli, Command},
     error::{SketchbookError, SketchbookResult},

@@ -1,7 +1,7 @@
 use crate::{
     cli::Command,
     error::{SketchbookError, SketchbookResult},
-    sketches::{Sketch, SketchEntrypoint},
+    sketch::{Sketch, SketchEntrypoint},
 };
 
 use async_trait::async_trait;

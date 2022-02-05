@@ -1,6 +1,10 @@
 #![allow(dead_code)]
 
-pub use crate::templates::blank::main as blank_main;
+use sketches::{
+    templates::{
+        blank::main as blank_main,
+    },
+};
 
 #[derive(Debug)]
 pub enum Sketch {
