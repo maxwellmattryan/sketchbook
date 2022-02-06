@@ -1,7 +1,7 @@
 use crate::{
     cli::Command,
-    error::{SketchbookResult},
-    parsing::{try_sketch_name_from_str},
+    error::SketchbookResult,
+    parsing::try_sketch_name_from_str,
     sketch::{Sketch, SketchEntrypoint},
 };
 

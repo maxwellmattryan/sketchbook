@@ -1,6 +1,4 @@
-use crate::{
-    error::{SketchbookError, SketchbookResult}
-};
+use crate::error::{SketchbookError, SketchbookResult};
 
 use regex::Regex;
 

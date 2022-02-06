@@ -1,8 +1,4 @@
-use crate::{
-    cli::{Command},
-    error::{SketchbookResult},
-    parsing::{try_sketch_name_from_str},
-};
+use crate::{cli::Command, error::SketchbookResult, parsing::try_sketch_name_from_str};
 
 use async_trait::async_trait;
 
@@ -11,7 +7,7 @@ use async_trait::async_trait;
 pub struct ExportCommand {
     /// The particular sketch to render (e.g. "my_sketch" or "MySketch")
     #[structopt(parse(try_from_str = try_sketch_name_from_str))]
-    pub sketch_name: String
+    pub sketch_name: String,
 }
 
 #[async_trait]
