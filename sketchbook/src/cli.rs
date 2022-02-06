@@ -1,4 +1,10 @@
-use crate::{commands::ViewCommand, error::SketchbookResult};
+use crate::{
+    commands::{
+        ExportCommand,
+        ViewCommand
+    },
+    error::SketchbookResult
+};
 
 use async_trait::async_trait;
 
@@ -14,6 +20,7 @@ pub trait Command {
     version = env!("CARGO_PKG_VERSION"),
 )]
 pub enum Cli {
+    Export(ExportCommand),
     View(ViewCommand),
 }
 
@@ -21,6 +28,7 @@ pub enum Cli {
 impl Command for Cli {
     async fn run(&self) -> SketchbookResult<()> {
         match self {
+            Self::Export(cmd) => cmd.run().await,
             Self::View(cmd) => cmd.run().await,
         }
     }

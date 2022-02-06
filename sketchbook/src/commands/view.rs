@@ -1,20 +1,11 @@
 use crate::{
     cli::Command,
-    error::{SketchbookError, SketchbookResult},
+    error::{SketchbookResult},
+    parsing::{try_sketch_name_from_str},
     sketch::{Sketch, SketchEntrypoint},
 };
 
 use async_trait::async_trait;
-use regex::Regex;
-
-fn try_sketch_name_from_str(arg: &str) -> SketchbookResult<String> {
-    let re = Regex::new(r"[^-_.a-zA-Z0-9]").unwrap();
-    if re.is_match(arg) {
-        Err(SketchbookError::InvalidSketchName(arg.to_string()))
-    } else {
-        Ok(arg.to_string())
-    }
-}
 
 /// View a sketch from within your sketchbook.
 #[derive(structopt::StructOpt)]
