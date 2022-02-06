@@ -16,8 +16,10 @@ fn try_sketch_name_from_str(arg: &str) -> SketchbookResult<String> {
     }
 }
 
+/// View a sketch from within your sketchbook.
 #[derive(structopt::StructOpt)]
 pub struct ViewCommand {
+    /// The particular sketch to view (e.g. "my_sketch" or "MySketch").
     #[structopt(parse(try_from_str = try_sketch_name_from_str))]
     pub sketch_name: String,
 }

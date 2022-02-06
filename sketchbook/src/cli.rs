@@ -7,6 +7,7 @@ pub trait Command {
     async fn run(&self) -> SketchbookResult<()>;
 }
 
+/// Easy management of your generative art sketches.
 #[derive(structopt::StructOpt)]
 #[structopt(
     author = "Matthew Maxwell <maxwellmattryan@gmail.com>",
