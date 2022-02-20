@@ -4,14 +4,21 @@ use nannou::prelude::*;
 
 use rand::{thread_rng, Rng};
 
+const WINDOW_WIDTH: u32 = 1920;
+const WINDOW_HEIGHT: u32 = 1080;
+
 pub fn main() {
-    nannou::app(model).update(update).simple_window(view).run();
+    nannou::app(model)
+        .update(update)
+        .simple_window(view)
+        .size(WINDOW_WIDTH, WINDOW_HEIGHT)
+        .run();
 }
 
 const NUM_COLUMNS: usize = 32;
 const NUM_ROWS: usize = 24;
 const PROBABILITY_THRESHOLD: f32 = 0.5;
-const LINES_PER_FRAME: usize = NUM_COLUMNS;
+const LINES_PER_FRAME: usize = NUM_COLUMNS / 2;
 
 type Line = (Vec2, Vec2);
 
@@ -69,10 +76,10 @@ fn update(app: &App, model: &mut Model, update: Update) {
         }
 
         model.current_position.x += cell_width;
-        if model.current_position.x > window.right() {
+        if model.current_position.x >= window.right() + cell_width {
             model.current_position.x = window.left();
             model.current_position.y -= cell_height;
-            if model.current_position.y < window.bottom() {
+            if model.current_position.y <= window.bottom() - cell_height {
                 model.current_position.y = window.top();
             }
         }

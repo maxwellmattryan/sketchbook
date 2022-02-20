@@ -1,9 +1,13 @@
-use sketches::{sketches::ten_print_main, templates::blank_main};
+use sketches::{
+    sketches::{ten_print_main, ulam_main},
+    templates::blank_main,
+};
 
 #[derive(Debug)]
 pub enum Sketch {
     Blank,
     TenPrint,
+    Ulam,
 }
 
 pub type SketchEntrypoint = fn() -> ();
@@ -13,6 +17,7 @@ impl Sketch {
         match self {
             Sketch::Blank => blank_main,
             Sketch::TenPrint => ten_print_main,
+            Sketch::Ulam => ulam_main,
         }
     }
 }
@@ -30,6 +35,7 @@ impl std::str::FromStr for Sketch {
         match s {
             "blank" | "Blank" => Ok(Sketch::Blank),
             "ten_print" | "Ten Print" => Ok(Sketch::TenPrint),
+            "ulam" | "Ulam" => Ok(Sketch::Ulam),
             _ => Err(format!("\"{}\" is not a valid sketch", s)),
         }
     }
