@@ -1,4 +1,4 @@
 // Sketches go here!
 
-pub mod blank;
-pub use crate::templates::blank::main;
+pub mod ten_print;
+pub use crate::sketches::ten_print::main as ten_print_main;
