@@ -1,5 +1,9 @@
 #![allow(unused)]
 
+use crate::{
+    utils::get_capture_frame_path,
+};
+
 use nannou::prelude::*;
 
 use rand::{thread_rng, Rng};
@@ -15,10 +19,11 @@ pub fn main() {
         .run();
 }
 
-const NUM_COLUMNS: usize = 32;
-const NUM_ROWS: usize = 24;
+const NUM_COLUMNS: usize = 48;
+const NUM_ROWS: usize = 20;
+const NUM_CELLS: usize = NUM_COLUMNS * NUM_ROWS;
 const PROBABILITY_THRESHOLD: f32 = 0.5;
-const LINES_PER_FRAME: usize = NUM_COLUMNS / 2;
+const LINES_PER_FRAME: usize = NUM_COLUMNS * NUM_ROWS;
 
 type Line = (Vec2, Vec2);
 
@@ -34,14 +39,14 @@ fn model(app: &App) -> Model {
     let window = app.window_rect();
 
     Model {
-        current_index: window.left() as usize,
+        current_index: 0,
         current_position: pt2(window.left(), window.top()),
         lines: vec![
             (
-                pt2(window.left() * 2.0, window.top() * 2.0),
-                pt2(window.left() * 2.0, window.top() * 2.0)
+                pt2(0.0, 0.0),
+                pt2(0.0, 0.0),
             );
-            NUM_COLUMNS * NUM_ROWS
+            NUM_CELLS * 2
         ],
     }
 }
@@ -71,15 +76,16 @@ fn update(app: &App, model: &mut Model, update: Update) {
 
         std::mem::replace(&mut model.lines[model.current_index], new_line);
         model.current_index += 1;
-        if model.current_index >= NUM_COLUMNS * NUM_ROWS {
+        if model.current_index >= model.lines.len() - 1 {
             model.current_index = 0;
         }
 
         model.current_position.x += cell_width;
-        if model.current_position.x >= window.right() + cell_width {
+        if model.current_position.x > window.right() * 2.0 {
             model.current_position.x = window.left();
+
             model.current_position.y -= cell_height;
-            if model.current_position.y <= window.bottom() - cell_height {
+            if model.current_position.y < window.bottom() * 2.0 {
                 model.current_position.y = window.top();
             }
         }
@@ -97,4 +103,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     }
 
     draw.to_frame(app, &frame);
+
+    let file_path = get_capture_frame_path("ten_print", app, &frame);
+    app.main_window().capture_frame(file_path);
 }

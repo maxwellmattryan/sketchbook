@@ -13,3 +13,6 @@ Cargo.lock
 **/.idea/
 **/.vs/
 **/.vscode/
+
+# Exports from rendering sketches
+exports/
