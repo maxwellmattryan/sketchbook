@@ -1,8 +1,6 @@
 #![allow(unused)]
 
-use crate::{
-    utils::get_capture_frame_path,
-};
+use crate::utils::get_capture_frame_path;
 
 use nannou::prelude::*;
 
@@ -41,13 +39,7 @@ fn model(app: &App) -> Model {
     Model {
         current_index: 0,
         current_position: pt2(window.left(), window.top()),
-        lines: vec![
-            (
-                pt2(0.0, 0.0),
-                pt2(0.0, 0.0),
-            );
-            NUM_CELLS * 2
-        ],
+        lines: vec![(pt2(0.0, 0.0), pt2(0.0, 0.0),); NUM_CELLS * 2],
     }
 }
 
