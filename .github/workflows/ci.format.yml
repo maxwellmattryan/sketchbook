@@ -8,7 +8,7 @@ on:
       - 'main'
 
 jobs:
-  rust:
+  sketchbook:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -22,4 +22,22 @@ jobs:
           components: rustfmt
 
       - name: Format
+        working-directory: ./sketchbook
+        run: cargo +nightly fmt -- --check
+
+  sketches:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install rustfmt with nightly toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+          components: rustfmt
+
+      - name: Format
+        working-directory: ./sketches
         run: cargo +nightly fmt -- --check
