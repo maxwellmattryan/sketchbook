@@ -1,11 +1,4 @@
-use sketches::{
-    sketches::{
-      ten_print_main,
-    },
-    templates::{
-        blank_main,
-    },
-};
+use sketches::{sketches::ten_print_main, templates::blank_main};
 
 #[derive(Debug)]
 pub enum Sketch {

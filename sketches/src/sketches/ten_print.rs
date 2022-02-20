@@ -2,7 +2,7 @@
 
 use nannou::prelude::*;
 
-use rand::{Rng, thread_rng};
+use rand::{thread_rng, Rng};
 
 pub fn main() {
     nannou::app(model).update(update).simple_window(view).run();
@@ -44,16 +44,16 @@ fn update(app: &App, model: &mut Model, update: Update) {
     for _ in 0..=LINES_PER_FRAME {
         let window = app.window_rect();
         let (width, height) = window.w_h();
-        let (cell_width, cell_height) = (
-            width / NUM_COLUMNS as f32,
-            height / NUM_ROWS as f32,
-        );
+        let (cell_width, cell_height) = (width / NUM_COLUMNS as f32, height / NUM_ROWS as f32);
 
         let probability: f32 = thread_rng().gen();
         let new_line: Line = if probability < PROBABILITY_THRESHOLD {
             (
                 pt2(model.current_position.x, model.current_position.y),
-                pt2(model.current_position.x + cell_width, model.current_position.y + cell_height),
+                pt2(
+                    model.current_position.x + cell_width,
+                    model.current_position.y + cell_height,
+                ),
             )
         } else {
             (
@@ -86,10 +86,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     draw.background().color(ANTIQUEWHITE);
 
     for line in &model.lines {
-        draw.line()
-            .color(BLACK)
-            .start(line.0)
-            .end(line.1);
+        draw.line().color(BLACK).start(line.0).end(line.1);
     }
 
     draw.to_frame(app, &frame);
