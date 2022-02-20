@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/44885822/154865778-f6a8bce2-fa04-4467-b662-e3f476303daf.png" data-canonical-src="https://user-images.githubusercontent.com/44885822/154865778-f6a8bce2-fa04-4467-b662-e3f476303daf.png" width="1280" height="360" />
+<img src="https://user-images.githubusercontent.com/44885822/154867185-cf702efe-e92d-44e9-a82c-3a960b9e610b.png" data-canonical-src="https://user-images.githubusercontent.com/44885822/154867185-cf702efe-e92d-44e9-a82c-3a960b9e610b.png" width="1280" height="360" />
 
 # `sketchbook`
 [![Format](https://github.com/maxwellmattryan/sketchbook/actions/workflows/ci.format.yml/badge.svg?branch=develop&event=push)](https://github.com/maxwellmattryan/sketchbook/actions/workflows/ci.format.yml)
